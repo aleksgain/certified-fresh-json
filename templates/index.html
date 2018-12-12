@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certified Fresh List</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <h2 class="card-body-heading"><img src="/static/logo.png" alt="Certified Fresh" style="width:64px;height:64px;"/>
+    Certified Fresh</h2>
+    <h3 class="card-body">
+    A list of all movies granted the "Certified Fresh" status by <a href="https://rottentomatoes.com" target="_blank">Rotten Tomatoes.</a>
+    </h3>
+    <form action="/" method="post">
+      <select name='sort_by'>
+        <option value='default' disabled selected>Sort By</option>
+        <option value='title'>Title</option>
+        <option value='release'>Release</option>
+        <option value='tomato_score'>Critics Score</option>
+        <option value='popcorn_score'>Audience Score</option>
+    </select>
+    <input class="button button-primary" type='submit' name='submit'/>
+    <a class="button button-primary" href="/static/movies.json" target="_blank">JSON List</a>
+</form>
+    <br>
+    {{ pagination.links }}
+  </div>
+  <div class="container">
+    {% for movie in movies %}
+      <div class="card u-clearfix">
+        <div class="card-media">
+          <img src="{{movie[13]}}" alt="" class="card-media-img"/>
+          <span class="card-media-tag"><img src="/static/{{movie[3]}}.png" alt="" style="width:12px;height:12px;"/> {{movie[4]}} <img src="/static/{{movie[5]}}.png" alt="" style="width:12px;height:12px;"/> {{movie[6]}}</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-body-heading">{{movie[1]}} ({{movie[16]}})</h2>
+          <br>
+          {{movie[10]|striptags}}
+          <br>
+          <br>
+          <a href="https://www.imdb.com/title/{{movie[15]}}" target="_blank" class="button button-primary">See on iMDB</a>
+          {% if movie[12] != 'n/a' %}
+          <a href="{{movie[12]}}" target="_blank" class="button button-primary">Watch the trailer</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    {{ pagination.links}}
+    <br>
+    {{ pagination.info }}
+  </div>
+</body>
+</html>
+
