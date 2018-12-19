@@ -4,3 +4,4 @@ IMDbPY
 Flask
 Flask-Session 
 flask_paginate
+gunicorn
