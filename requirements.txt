@@ -1,6 +1,5 @@
 jsonschema
 urllib3
-sqlite3
 IMDbPY
 Flask
 Flask-Session 
