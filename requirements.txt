@@ -1,9 +1,7 @@
-json
-urllib.request
+jsonschema
+urllib3
 sqlite3
-time
-imdbpy
-flask
-flask_session
-datetime
+IMDbPY
+Flask
+Flask-Session 
 flask_paginate
